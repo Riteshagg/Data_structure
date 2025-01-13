@@ -102,4 +102,4 @@ function insertionSort(arr,len){
     return arr;
 }
 
-console.log(insertionSort([7,12,9,11,3],5))
+//console.log(insertionSort([7,12,9,11,3],5))
