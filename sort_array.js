@@ -102,4 +102,54 @@ function insertionSort(arr,len){
     return arr;
 }
 
-//console.log(insertionSort([7,12,9,11,3],5))
+
+// quick sort, where we choose value from an array as pivot and 
+//put all the elements smaller than the pivot on the left of the pivot and  the greater then elemnt on the right of the pivot
+// worst case is O(n^2), best case/avg is O(n log n)
+
+function quickSort(arr){
+    if(arr.length<=1){
+        return arr;
+    }
+    let pivot = arr[arr.length-1];// choosed last elemnt of the array
+    let left = [];
+    let right = [];
+    for(let i=0;i<arr.length-1;i++){
+        if(arr[i]<pivot){
+            left.push(arr[i]);
+        }else{
+            right.push(arr[i]);
+        }
+    }
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+
+//// merge sort, where we divide the array into two halves and split until subarray should be have only an one elemnt, sort them individually and then merge them
+// time complexity: O(n log n)
+function merge(left, right){
+    let result = [];
+    
+    while (left.length>0 && right.length>0){
+        if(left[0]<=right[0]){
+            result.push(left.shift());
+        }else{
+            result.push(right.shift());
+        }
+    }
+    return [...result,...left, ...right];
+
+}
+
+function mergeSort(arr){
+    if(arr.length<=1){
+        return arr;
+    }
+    let mid = Math.floor(arr.length/2);
+    let left = arr.slice(0,mid);
+    let right = arr.slice(mid);
+    return merge(mergeSort(left),mergeSort(right));
+}
+
+//console.log(mergeSort([7,12,9,11,3]))
+
